@@ -77,7 +77,10 @@ function translator.func(input, seg, env)
       local c = Candidate("cloud_pinyin:" .. code, seg.start, seg.start + v[2], v[1], "(云输入)")
 
       c.quality = 99
-      c.preedit = code
+      -- c.preedit = code
+      if string.gsub(v[3].pinyin, "'", "") == input then
+        c.preedit = code
+      end
       yield(c)
     end
   end
